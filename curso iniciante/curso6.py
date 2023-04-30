@@ -10,4 +10,4 @@ soma = 0
 for i in notas:
     soma = soma + i
 
-print(f" a média da sala é {soma/len(notas)}")
+print(f" a média da sala é {notas}")
