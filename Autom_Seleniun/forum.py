@@ -8,6 +8,11 @@ from time import sleep
 
 options = Options()
 options.add_argument("start-maximized")
+options.add_argument('disable-notifications')
+
+options.add_argument('profile-directory=Default')
+options.add_argument('user-data-dir=/tmp/browser')
+
 webdriver_service = Service('C:\webdrivers\chromedriver.exe')
 driver = webdriver.Chrome(options=options, service=webdriver_service)
 wait = WebDriverWait(driver, 15)
@@ -16,20 +21,13 @@ url = "https://forum.gatapop.com/?_fromLogin=1"
 
 driver.get(url)
 
-wait.until(EC.element_to_be_clickable((By.ID,'elUserSignIn'))).click()
-wait.until(EC.element_to_be_clickable((By.ID,'auth'))).send_keys("ZeLove")
-wait.until(EC.element_to_be_clickable((By.ID,'password'))).send_keys("Camis@100")
-wait.until(EC.element_to_be_clickable((By.ID,'elSignIn_submit'))).click()
+wait.until(EC.element_to_be_clickable((By.NAME, 'q'))).send_keys("Maria")
+wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#elSearch > form > button > i'))).click()
 
-wait.until(EC.element_to_be_clickable((By.NAME,'q'))).send_keys("Myria Pedron")
-wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#elSearch > form > button > i'))).click()
-
-wait.until(EC.element_to_be_clickable((By.CLASS_NAME,'ipsMatch1'))).click()
+wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'ipsMatch1'))).click()
 sleep(3)
-wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#ipsLayout_mainArea > div.cTopic.ipsClear.ipsSpacer_top > div.cTopicPostArea.ipsBox.ipsBox_transparent.ipsAreaBackground.ipsPad.ipsSpacer_top > form > div > div.ipsComposeArea_editor > div > div.ipsContained > div.ipsComposeArea_dummy.ipsJS_show'))).click()
+wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                       '#ipsLayout_mainArea > div.cTopic.ipsClear.ipsSpacer_top > div.cTopicPostArea.ipsBox.ipsBox_transparent.ipsAreaBackground.ipsPad.ipsSpacer_top > form > div > div.ipsComposeArea_editor > div > div.ipsContained > div.ipsComposeArea_dummy.ipsJS_show'))).click()
 sleep(3)
-wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#cke_1_contents > div > p'))).send_keys("Era uma das mais desejadas para posar nua, pena que desperdiçou seu auge")
-
-
-
-
+wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, '#cke_1_contents > div > p'))).send_keys(
+    "Era uma das mais desejadas para posar nua, pena que desperdiçou seu auge")
